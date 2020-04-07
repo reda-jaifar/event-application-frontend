@@ -3,11 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import {applyMiddleware, createStore} from 'redux';
+import { Provider } from 'react-redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import counterReducer from "./store/Event/reducer";
 
+const store = createStore(counterReducer,
+    composeWithDevTools()
+)
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+      <Provider store={store}>
+          <App />
+      </Provider>,
   document.getElementById('root')
 );
 
